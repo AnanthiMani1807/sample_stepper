@@ -1,44 +1,56 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.buildlog/
-.history
-.svn/
-migrate_working_dir/
+ ../.DS_Store
+        ../.idea/
+        ../brand_button_completed/
+        ../button_primary/
+        ../button_updated/
+        ../buttons_sample/
+        ../chips/
+        ../favourites_sample/.gitignore
+        ../favourites_sample/.metadata
+        ../favourites_sample/README.md
+        ../favourites_sample/analysis_options.yaml
+        ../favourites_sample/android/
+        ../favourites_sample/ios/
+        ../favourites_sample/lib/main.dart
+        ../favourites_sample/lib/presentation/drop_down.dart
+        ../favourites_sample/lib/presentation/loan/
+        ../favourites_sample/lib/util/
+        ../favourites_sample/linux/
+        ../favourites_sample/macos/
+        ../favourites_sample/pubspec.lock
+        ../favourites_sample/pubspec.yaml
+        ../favourites_sample/web/
+        ../favourites_sample/windows/
+        ../flutter_ex/
+        ../flutter_food_app/
+        ../loan_summary/.gitignore
+        ../loan_summary/.metadata
+        ../loan_summary/README.md
+        ../loan_summary/analysis_options.yaml
+        ../loan_summary/android/
+        ../loan_summary/ios/
+        ../loan_summary/lib/main.dart
+        ../loan_summary/linux/
+        ../loan_summary/macos/
+        ../loan_summary/pubspec.lock
+        ../loan_summary/pubspec.yaml
+        ../loan_summary/web/
+        ../loan_summary/windows/
+        ../sample_flutter/
+        ../sample_stepper/
+        ../sample_type_aehad/
+        ../shipment_calendar/.gitignore
+        ../shipment_calendar/.metadata
+        ../shipment_calendar/README.md
+        ../shipment_calendar/analysis_options.yaml
+        ../shipment_calendar/android/
+        ../shipment_calendar/ios/
+        ../shipment_calendar/lib/
+        ../shipment_calendar/linux/
+        ../shipment_calendar/macos/
+        ../shipment_calendar/pubspec.lock
+        ../shipment_calendar/pubspec.yaml
+        ../shipment_calendar/web/
+        ../shipment_calendar/windows/
+        ../sidesheet/
 
-# IntelliJ related
-*.iml
-*.ipr
-*.iws
-.idea/
-
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.packages
-.pub-cache/
-.pub/
-/build/
-
-# Symbolication related
-app.*.symbols
-
-# Obfuscation related
-app.*.map.json
-
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
