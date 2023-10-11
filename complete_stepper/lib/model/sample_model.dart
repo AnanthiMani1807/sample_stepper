@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:shipment_calendar/enum/enum.dart';
 
-import '../main.dart';
+import '../view/stepper_view.dart';
 
 class SampleModel {
   final String userType;
   final String name;
   final DateTime dateTime;
-  final String status;
+  final StepperEnum status;
   final Color stepperColor;
   final Color stepperLine;
   final String statusText;
@@ -32,7 +33,7 @@ class SampleModel {
       userType: jsonData['userType'] as String,
       name: jsonData['name'] as String,
       dateTime: DateTime.parse(jsonData['dateTime'] as String),
-      status: jsonData['status'] as String,
+      status: getStatusText(jsonData['status']),
       stepperColor: Color(int.parse(jsonData['stepperColor'].substring(1, 7), radix: 16) + 0xFF000000),
       stepperLine: Color(int.parse(jsonData['stepperLine'].substring(1, 7), radix: 16) + 0xFF000000),
       statusText: jsonData['statusText'] as String,
@@ -46,7 +47,7 @@ class SampleModel {
     String? userType,
     String? name,
     DateTime? dateTime,
-    String? status,
+    StepperEnum? status,
     Color? stepperColor,
     Color? stepperLine,
     String? statusText,
@@ -67,4 +68,5 @@ class SampleModel {
       someBoolValue: someBoolValue ?? this.someBoolValue,
     );
   }
+
 }

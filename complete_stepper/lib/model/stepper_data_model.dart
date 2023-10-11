@@ -1,17 +1,14 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
 import '../enum/enum.dart';
 
 class StepperData {
   final String userType;
   final String name;
-  final String dateTime;
+  final DateTime dateTime;
   final StepperEnum status;
   final Color stepperColor;
   final Color stepperLine;
-  final String statusText;
 
   StepperData({
     required this.userType,
@@ -20,17 +17,15 @@ class StepperData {
     required this.status,
     required this.stepperColor,
     required this.stepperLine,
-    required this.statusText,
   });
 
   StepperData copyWith({
     String? userType,
     String? name,
-    String? dateTime,
+    DateTime? dateTime,
     StepperEnum? status,
     Color? stepperColor,
     Color? stepperLine,
-    String? statusText,
   }) {
     return StepperData(
       userType: userType ?? this.userType,
@@ -39,20 +34,17 @@ class StepperData {
       dateTime: dateTime ?? this.dateTime,
       stepperColor: stepperColor ?? this.stepperColor,
       stepperLine: stepperLine ?? this.stepperLine,
-      statusText: statusText ?? this.statusText,
     );
   }
 
   factory StepperData.fromJson(Map<String, dynamic> jsonData) {
-    final statusText = EnumUtils.getStatusText(jsonData['status'] as StepperEnum);
     return StepperData(
       userType: jsonData['userType'] as String,
       name: jsonData['name'] as String,
-      dateTime: jsonData['dateTime'] as String,
-      status: jsonData['status'] as StepperEnum,
+      dateTime: DateTime.parse(jsonData['dateTime'] as String),
+      status: getStatusText(jsonData['status']),
       stepperColor: jsonData['status'] == 'Returned' ? Colors.pinkAccent.shade100 : Colors.green,
       stepperLine: jsonData['status'] == 'Returned' ? Colors.red : Colors.grey,
-      statusText: statusText,
     );
   }
 }

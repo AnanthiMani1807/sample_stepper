@@ -7,7 +7,7 @@ enum StepperEnum {
     stepperLine: Colors.grey,
     key: 'initiated',
     icon: Icons.check,
-     iconColor: Colors.white,
+    iconColor: Colors.white,
     //svgIcon: 'assets/icons/check.svg',
   ),
   authorized(
@@ -56,7 +56,7 @@ enum StepperEnum {
     required this.iconColor,
     // required this.svgIcon,
   });
-  }
+}
 
 class EnumUtils {
   static String getStatusText(StepperEnum status) {
@@ -72,5 +72,20 @@ class EnumUtils {
       default:
         return 'Unknown'; // Handle the case for unknown status
     }
+  }
+}
+
+StepperEnum getStatusText(String status) {
+  switch (status) {
+    case 'Initiated':
+      return StepperEnum.initiated;
+    case 'Authorized':
+      return StepperEnum.authorized;
+    case 'Released':
+      return StepperEnum.released;
+    case 'Returned':
+      return StepperEnum.returned;
+    default:
+      return StepperEnum.initiated; // Handle the case for unknown status
   }
 }

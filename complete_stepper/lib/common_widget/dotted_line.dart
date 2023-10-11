@@ -11,8 +11,8 @@ class DottedLinePainter extends CustomPainter {
     final Paint paint = Paint()
       ..color = color
       ..strokeWidth = strokeWidth;
-    final double dashWidth = 5;
-    final double dashSpace = 5;
+    const double dashWidth = 5;
+    const double dashSpace = 5;
     double startY = 0;
 
     while (startY < size.height) {
