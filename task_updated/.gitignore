@@ -53,4 +53,5 @@
         ../shipment_calendar/web/
         ../shipment_calendar/windows/
         ../sidesheet/
+         .dart_tool/
 

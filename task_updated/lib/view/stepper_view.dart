@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shipment_calendar/model/sample_model.dart';
 import 'package:shipment_calendar/model/stepper_data_model.dart';
 import 'package:shipment_calendar/view/stepper_design_sample.dart';
 import '../enum/enum.dart';
@@ -30,6 +29,7 @@ class GenericStepper<T> extends StatelessWidget {
   const GenericStepper({
     Key? key,
     required this.steps,
+
     /// remove the require key word of final field when you initialize
     this.scrollDirection = Axis.vertical,
   }) : super(key: key);
@@ -43,12 +43,15 @@ class GenericStepper<T> extends StatelessWidget {
         scrollDirection: scrollDirection,
         itemCount: steps.length,
         itemBuilder: (BuildContext context, int index) {
-         // print(steps.runtimeType);
+          // print(steps.runtimeType);
           final step = steps[index];
           //print(T.runtimeType);
           if (T == StepperData) {
             ///stepHolder : assign the List to StepperModel Instance
-            return SampleStepperDesign(stepHolder: step as StepperData);
+            return SampleStepperDesign(
+              stepHolder: step as StepperData,
+              isLastIndex: index == steps.length - 1,
+            );
           }
           return const SizedBox.shrink();
         },

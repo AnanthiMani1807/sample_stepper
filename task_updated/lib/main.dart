@@ -3,10 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shipment_calendar/common_widget/widget_value_loader.dart';
 import 'package:shipment_calendar/provider/provider.dart';
 import 'package:shipment_calendar/view/stepper_view.dart';
-
 import 'model/stepper_data_model.dart';
-
-
 
 class Sample extends StatelessWidget {
   const Sample({super.key});

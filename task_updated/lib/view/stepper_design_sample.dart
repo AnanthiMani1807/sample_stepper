@@ -6,16 +6,20 @@ import '../model/stepper_data_model.dart';
 class SampleStepperDesign extends StatelessWidget {
   ///Creating the instance of the model that is passed as T
   final StepperData stepHolder;
+  final bool isLastIndex;
 
   const SampleStepperDesign({
     Key? key,
     required this.stepHolder,
+    this.isLastIndex =
+        false, //when initialize with a default value required is not compulsory for variable
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+
       children: [
         Text(
           DateTimeFormatter.customDateFormatter(stepHolder.dateTime),
@@ -31,11 +35,11 @@ class SampleStepperDesign extends StatelessWidget {
             color: Colors.black,
           ),
         ),
+        const SizedBox(height: 8.0),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(height: 8.0),
             Container(
               width: 35,
               height: 35,
@@ -45,23 +49,25 @@ class SampleStepperDesign extends StatelessWidget {
               ),
               child: Icon(
                 stepHolder.status.icon,
-               // color: Colors.white,
+                // color: Colors.white,
                 size: 30,
               ),
             ),
-            stepHolder.status == StepperEnum.returned
-                ? CustomPaint(
-                    size: const Size(150, 2), // Adjust the size as needed
-                    painter: StepperLinesPainter(stepCount: 15),
-                  )
-                : Container(
-                    height: 2,
-                    width: 150,
-                    color: stepHolder.status.stepperLine,
-                  ),
-            const SizedBox(height: 8.0),
+            if (!isLastIndex)
+              stepHolder.status == StepperEnum.returned
+                  ? CustomPaint(
+                      size: const Size(170, 2), // Adjust the size as needed
+                      painter: StepperLinesPainter(stepCount: 15),
+                    )
+                  : Container(
+                      height: 2,
+                      width: 170,
+                      color: stepHolder.status.stepperLine,
+                    ),
+
           ],
         ),
+        const SizedBox(height: 8.0),
         SizedBox(
           width: 150,
           child: Text(

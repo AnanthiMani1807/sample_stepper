@@ -62,28 +62,28 @@ class EnumUtils {
   static String getStatusText(StepperEnum status) {
     switch (status) {
       case StepperEnum.initiated:
-        return 'Initiated';
+        return 'initiated';
       case StepperEnum.authorized:
-        return 'Authorized';
+        return 'authorized';
       case StepperEnum.released:
-        return 'Released';
+        return 'released';
       case StepperEnum.returned:
-        return 'Returned';
+        return 'returned';
       default:
-        return 'Unknown'; // Handle the case for unknown status
+        return 'unknown'; // Handle the case for unknown status
     }
   }
 }
 
 StepperEnum getStatusText(String status) {
   switch (status) {
-    case 'Initiated':
+    case 'initiated':
       return StepperEnum.initiated;
-    case 'Authorized':
+    case 'authorized':
       return StepperEnum.authorized;
-    case 'Released':
+    case 'released':
       return StepperEnum.released;
-    case 'Returned':
+    case 'returned':
       return StepperEnum.returned;
     default:
       return StepperEnum.initiated; // Handle the case for unknown status

@@ -42,9 +42,9 @@ class StepperData {
       userType: jsonData['userType'] as String,
       name: jsonData['name'] as String,
       dateTime: DateTime.parse(jsonData['dateTime'] as String),
-      status: getStatusText(jsonData['status']),
-      stepperColor: jsonData['status'] == 'Returned' ? Colors.pinkAccent.shade100 : Colors.green,
-      stepperLine: jsonData['status'] == 'Returned' ? Colors.red : Colors.grey,
+      status: getStatusText(jsonData['status'].toString().toLowerCase()),
+      stepperColor: jsonData['status'].toString().toLowerCase() == 'returned' ? Colors.pinkAccent.shade100 : Colors.green,
+      stepperLine: jsonData['status'].toString().toLowerCase() == 'returned' ? Colors.red : Colors.grey,
     );
   }
 }
