@@ -1,41 +1,28 @@
 import 'package:flutter/material.dart';
-import '../date_format/date_format.dart';
-import '../enum/enum.dart';
-import '../model/stepper_data_model.dart';
 
-class SampleStepperDesign extends StatelessWidget {
+class HorizontalStepperGeneric extends StatelessWidget {
   ///Creating the instance of the model that is passed as T
-  final StepperData stepHolder;
   final bool isLastIndex;
+  final Widget? topWidget;
+  final Widget? bottomWidget;
+  final bool stepperStatus;
 
-  const SampleStepperDesign({
+  const HorizontalStepperGeneric({
     Key? key,
-    required this.stepHolder,
-    this.isLastIndex =
-        false, //when initialize with a default value required is not compulsory for variable
+    this.isLastIndex = false,
+    required this.stepperStatus,
+    this.topWidget,
+    this.bottomWidget,
+
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-
       children: [
-        Text(
-          DateTimeFormatter.customDateFormatter(stepHolder.dateTime),
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.black,
-          ),
-        ),
-        Text(
-          DateTimeFormatter.customTimeFormatter(stepHolder.dateTime),
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.black,
-          ),
-        ),
-        const SizedBox(height: 8.0),
+       topWidget ?? const SizedBox.shrink(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -44,56 +31,29 @@ class SampleStepperDesign extends StatelessWidget {
               width: 35,
               height: 35,
               decoration: BoxDecoration(
-                color: stepHolder.status.stepperColor,
+                color: stepperStatus ? Colors.red : Colors.green,
                 shape: BoxShape.circle,
               ),
               child: Icon(
-                stepHolder.status.icon,
+                stepperStatus ? Icons.close : Icons.check,
                 // color: Colors.white,
                 size: 30,
               ),
             ),
             if (!isLastIndex)
-              stepHolder.status == StepperEnum.returned
+              stepperStatus
                   ? CustomPaint(
-                      size: const Size(170, 2), // Adjust the size as needed
-                      painter: StepperLinesPainter(stepCount: 15),
-                    )
+                size: const Size(170, 2), // Adjust the size as needed
+                painter: StepperLinesPainter(stepCount: 15),
+              )
                   : Container(
-                      height: 2,
-                      width: 170,
-                      color: stepHolder.status.stepperLine,
-                    ),
-
+                height: 2,
+                width: 170,
+                color: Colors.green,
+              ),
           ],
         ),
-        const SizedBox(height: 8.0),
-        SizedBox(
-          width: 150,
-          child: Text(
-            stepHolder.name,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        const SizedBox(height: 4.0),
-        Text(
-          '(${stepHolder.userType})',
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.black,
-          ),
-        ),
-        const SizedBox(height: 4.0),
-        Text(
-          stepHolder.status.displayName,
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.black,
-          ),
-        ),
+       bottomWidget ?? const SizedBox.shrink(),
       ],
     );
   }
