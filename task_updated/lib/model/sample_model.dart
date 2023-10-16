@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shipment_calendar/enum/enum.dart';
 
-import '../view/stepper_view.dart';
 
 class SampleModel {
   final String userType;

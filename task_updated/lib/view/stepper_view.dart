@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shipment_calendar/common_widget/widget_value_loader.dart';
-import 'package:shipment_calendar/model/stepper_data_model.dart';
-import 'package:shipment_calendar/view/stepper_generic.dart';
+import 'package:shipment_calendar/view/stepper_items.dart';
 import '../enum/enum.dart';
-import '../provider/provider.dart';
 
-abstract class StepperDataHolder {
+class StepperDataHolder {
   final DateTime dateFormat;
   final DateTime timeFormat;
   final Axis scrollDirection;
@@ -24,30 +20,41 @@ abstract class StepperDataHolder {
   });
 }
 
-class StepperDialog extends StatelessWidget {
-  /// Create empty list to store the list of data
+class CustomStepper<T> extends StatelessWidget {
+  final Axis scrollDirection;
+  final Function(T) onChanged;
+  final T? value;
+  final List<StepperItems<T>> items;
 
-  const StepperDialog({
-    Key? key,
-  }) : super(key: key);
+  CustomStepper({
+    super.key,
+    this.scrollDirection = Axis.horizontal,
+    required this.onChanged,
+    required this.items,
+    this.value,
+  }) : assert(
+          items.isEmpty ||
+              value == null ||
+              items.where((StepperItems<T> item) {
+                    return item.value == value;
+                  }).length ==
+                  1,
+          "There should be exactly one item with [MyStatus]'s value"
+          '$value. \n'
+          'Either zero or 2 or more [MyStatus]s were detected '
+          'with the same value',
+        );
 
   @override
   Widget build(BuildContext context) {
-    final asyncValueProvider = Provider<AsyncValue<List<StepperData>>>(
-      (ref) => ref.watch(stepDataProvider),
-    );
     return SizedBox(
-      height: 250,
-      child: WidgetValueLoader(
-        value: asyncValueProvider,
-        data: (List<StepperData> steps) {
-          // always pass data with type
-          return HorizontalStepper<StepperData>(steps: steps);
-        },
-        loadingBuilder: () => const CircularProgressIndicator(),
-        errorBuilder: (error, stackTrace) => Text('Error: $error'),
+      height: 200,
+      child: ListView.builder(
+        scrollDirection: scrollDirection,
+        shrinkWrap: true,
+        itemCount: items.length,
+        itemBuilder: (_, int index) => items[index],
       ),
     );
   }
 }
-
