@@ -9,6 +9,8 @@ class StepperItems<T> extends StatelessWidget {
   final Color stepperColor;
   final Color lineColor;
   final bool stepperStatus;
+  final int index;
+  final int stepLength;
 
   const StepperItems({
     Key? key,
@@ -19,7 +21,24 @@ class StepperItems<T> extends StatelessWidget {
     required this.stepperColor,
     required this.lineColor,
     required this.stepperStatus,
+    required this.index,
+    required this.stepLength,
   }) : super(key: key);
+
+  StepperItems<T> copyWithIndex(int? newIndex, int newStepLength) {
+    return StepperItems(
+      key: key,
+      crownWidget: crownWidget,
+      bottomWidget: bottomWidget,
+      value: value,
+      icon: icon,
+      stepperColor: stepperColor,
+      lineColor: lineColor,
+      stepperStatus: stepperStatus,
+      index: newIndex ?? 0,
+      stepLength: newStepLength,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +63,17 @@ class StepperItems<T> extends StatelessWidget {
                 size: 30,
               ),
             ),
-            stepperStatus
-                ? CustomPaint(
-                    size: const Size(150, 2),
-                    painter: StepperLinesPainter(stepCount: 15),
-                  )
-                : Container(
-                    height: 2,
-                    width: 150,
-                    color: lineColor,
-                  ),
+            if (index != stepLength - 1)
+              stepperStatus
+                  ? CustomPaint(
+                      size: const Size(150, 2),
+                      painter: StepperLinesPainter(stepCount: 15),
+                    )
+                  : Container(
+                      height: 2,
+                      width: 150,
+                      color: lineColor,
+                    ),
             const SizedBox(height: 8.0),
           ],
         ),

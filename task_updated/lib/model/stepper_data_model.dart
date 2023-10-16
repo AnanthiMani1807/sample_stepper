@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../enum/enum.dart';
 
@@ -43,8 +42,12 @@ class StepperData {
       name: jsonData['name'] as String,
       dateTime: DateTime.parse(jsonData['dateTime'] as String),
       status: getStatusText(jsonData['status'].toString().toLowerCase()),
-      stepperColor: jsonData['status'].toString().toLowerCase() == 'returned' ? Colors.pinkAccent.shade100 : Colors.green,
-      stepperLine: jsonData['status'].toString().toLowerCase() == 'returned' ? Colors.red : Colors.grey,
+      stepperColor: jsonData['status'].toString().toLowerCase() == 'returned'
+          ? Colors.pinkAccent.shade100
+          : Colors.green,
+      stepperLine: jsonData['status'].toString().toLowerCase() == 'returned'
+          ? Colors.red
+          : Colors.grey,
     );
   }
 }

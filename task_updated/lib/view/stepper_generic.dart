@@ -19,63 +19,68 @@ class StepperDialog extends StatelessWidget {
       value: asyncValueProvider,
       data: (List<StepperData> stepperDataList) {
         return CustomStepper<StepperData>(
-          items: stepperDataList
-              .map((StepperData e) => StepperItems<StepperData>(
-                    stepperStatus: e.status.isNegative,
-                    stepperColor: e.status.stepperColor,
-                    lineColor: e.status.stepperLine,
-                    icon: e.status.icon,
-                    value: e,
-                    crownWidget: Column(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          DateTimeFormatter.customDateFormatter(e.dateTime),
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          DateTimeFormatter.customTimeFormatter(e.dateTime),
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
+          stepLength: stepperDataList.length,
+          items: stepperDataList.asMap().entries.map((entry) {
+            final index = entry.key;
+            final StepperData e = entry.value;
+            return StepperItems<StepperData>(
+              index: index,
+              stepLength: stepperDataList.length,
+              stepperStatus: e.status.isNegative,
+              stepperColor: e.status.stepperColor,
+              lineColor: e.status.stepperLine,
+              icon: e.status.icon,
+              value: e,
+              crownWidget: Column(
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    DateTimeFormatter.customDateFormatter(e.dateTime),
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
                     ),
-                    bottomWidget: Column(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          e.name,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 4.0),
-                        Text(
-                          '(${e.userType})',
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(height: 4.0),
-                        Text(
-                          e.status.displayName,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
+                  ),
+                  Text(
+                    DateTimeFormatter.customTimeFormatter(e.dateTime),
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
                     ),
-                  ))
-              .toList(),
+                  ),
+                ],
+              ),
+              bottomWidget: Column(
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    e.name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4.0),
+                  Text(
+                    '(${e.userType})',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 4.0),
+                  Text(
+                    e.status.displayName,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
           onChanged: (StepperData val) {},
         );
       },

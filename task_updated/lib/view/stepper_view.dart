@@ -25,6 +25,7 @@ class CustomStepper<T> extends StatelessWidget {
   final Function(T) onChanged;
   final T? value;
   final List<StepperItems<T>> items;
+  final int stepLength;
 
   CustomStepper({
     super.key,
@@ -32,6 +33,7 @@ class CustomStepper<T> extends StatelessWidget {
     required this.onChanged,
     required this.items,
     this.value,
+    required this.stepLength,
   }) : assert(
           items.isEmpty ||
               value == null ||
@@ -53,7 +55,10 @@ class CustomStepper<T> extends StatelessWidget {
         scrollDirection: scrollDirection,
         shrinkWrap: true,
         itemCount: items.length,
-        itemBuilder: (_, int index) => items[index],
+        itemBuilder: (context, index) {
+          return items[index].copyWithIndex(
+              index, stepLength ?? 0); // Pass index and stepLength
+        },
       ),
     );
   }

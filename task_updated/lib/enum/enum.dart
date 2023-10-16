@@ -33,7 +33,7 @@ enum StepperEnum {
     stepperColor: Colors.redAccent,
     stepperLine: Colors.red,
     key: 'returned',
-    isNegative : true,
+    isNegative: true,
     icon: Icons.close,
     iconColor: Colors.red,
     //svgIcon: 'assets/icons/close.svg',
@@ -56,7 +56,7 @@ enum StepperEnum {
     required this.key,
     required this.icon,
     required this.iconColor,
-     this.isNegative = false,
+    this.isNegative = false,
 
     // required this.svgIcon,
   });

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shipment_calendar/enum/enum.dart';
 
-
 class SampleModel {
   final String userType;
   final String name;
@@ -33,11 +32,16 @@ class SampleModel {
       name: jsonData['name'] as String,
       dateTime: DateTime.parse(jsonData['dateTime'] as String),
       status: getStatusText(jsonData['status']),
-      stepperColor: Color(int.parse(jsonData['stepperColor'].substring(1, 7), radix: 16) + 0xFF000000),
-      stepperLine: Color(int.parse(jsonData['stepperLine'].substring(1, 7), radix: 16) + 0xFF000000),
+      stepperColor: Color(
+          int.parse(jsonData['stepperColor'].substring(1, 7), radix: 16) +
+              0xFF000000),
+      stepperLine: Color(
+          int.parse(jsonData['stepperLine'].substring(1, 7), radix: 16) +
+              0xFF000000),
       statusText: jsonData['statusText'] as String,
       someIntValue: jsonData['someIntValue'] as int,
-      someDateTimeValue: DateTime.parse(jsonData['someDateTimeValue'] as String),
+      someDateTimeValue:
+          DateTime.parse(jsonData['someDateTimeValue'] as String),
       someBoolValue: jsonData['someBoolValue'] as bool,
     );
   }
@@ -67,5 +71,4 @@ class SampleModel {
       someBoolValue: someBoolValue ?? this.someBoolValue,
     );
   }
-
 }

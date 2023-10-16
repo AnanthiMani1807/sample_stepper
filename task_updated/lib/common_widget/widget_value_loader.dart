@@ -31,15 +31,15 @@ class WidgetValueLoader<T> extends ConsumerWidget {
           showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: const Text('Error'),
-                content: Text(error.toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('OK'),
-                  ),
-                ],
-              ));
+                    title: const Text('Error'),
+                    content: Text(error.toString()),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text('OK'),
+                      ),
+                    ],
+                  ));
           return Text('Error: $error');
         }
       },
