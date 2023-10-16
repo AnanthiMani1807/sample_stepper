@@ -11,7 +11,7 @@ class Sample extends StatelessWidget {
 
 
     return const ProviderScope(
-      child: StepperDialog(),
+      child: GenericStepper(),
     );
   }
 }

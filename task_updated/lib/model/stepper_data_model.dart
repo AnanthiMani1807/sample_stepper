@@ -7,16 +7,12 @@ class StepperData {
   final String name;
   final DateTime dateTime;
   final StepperEnum status;
-  final Color stepperColor;
-  final Color stepperLine;
 
   StepperData({
     required this.userType,
     required this.name,
     required this.dateTime,
     required this.status,
-    required this.stepperColor,
-    required this.stepperLine,
   });
 
   StepperData copyWith({
@@ -24,16 +20,12 @@ class StepperData {
     String? name,
     DateTime? dateTime,
     StepperEnum? status,
-    Color? stepperColor,
-    Color? stepperLine,
   }) {
     return StepperData(
       userType: userType ?? this.userType,
       name: name ?? this.name,
       status: status ?? this.status,
       dateTime: dateTime ?? this.dateTime,
-      stepperColor: stepperColor ?? this.stepperColor,
-      stepperLine: stepperLine ?? this.stepperLine,
     );
   }
 
@@ -43,8 +35,6 @@ class StepperData {
       name: jsonData['name'] as String,
       dateTime: DateTime.parse(jsonData['dateTime'] as String),
       status: getStatusText(jsonData['status'].toString().toLowerCase()),
-      stepperColor: jsonData['status'].toString().toLowerCase() == 'returned' ? Colors.pinkAccent.shade100 : Colors.green,
-      stepperLine: jsonData['status'].toString().toLowerCase() == 'returned' ? Colors.red : Colors.grey,
-    );
+     );
   }
 }
